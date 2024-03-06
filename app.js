@@ -43,6 +43,7 @@ app.get('*', (req, res) => {
     res.send({message: 'Ruta no valida'})
 })
 
+console.log(process.env.DB_PORT);
 //Verifica la conexión a la base de datos y si se conecta iniciamos el servidor express.
 conexion.connect((error)=> {
     if(error){
