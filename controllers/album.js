@@ -3,12 +3,17 @@ var jwt = require('../services/jwt'); //Importramos el servicio
 var fs = require('fs');//Manejo de archivos FileSystem
 var path = require('path');//Rutas o Ubicaciones
 
+require ('dotenv').config();
+const PORT = process.env.PORT;
+
 const conexion = conn.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'',
-    database:'mydb'
-});
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    //port = 300 DB_HOST = 'localhost' DB_USER = 'root'  DB_PASSWORD = '' DB_NAME = 'mydb' DB_PORT = 3306
+})
 
 module.exports={
     save(req,res){

@@ -8,7 +8,8 @@ const cors = require('cors');
 require ('dotenv').config();
 const PORT = process.env.PORT;
 
-const conexion = conn.createConnection({
+const conexion = conn.createPool({
+    connectionLimit : 10,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -45,7 +46,7 @@ app.get('*', (req, res) => {
 
 console.log(process.env.DB_PORT);
 //Verifica la conexión a la base de datos y si se conecta iniciamos el servidor express.
-conexion.connect((error)=> {
+conexion.getConnection((error)=> {
     if(error){
         console.log('No se puede conectar a la base de datos');
     }else{
